@@ -78,6 +78,7 @@ def filtraURLNoIndexables(df_in):
     df_out=df_in[df_mask] 
     return df_out
 
+
 st.set_page_config(
    page_title="Rendimiento home y directorios"
 )
@@ -120,7 +121,7 @@ if f_internal is not None:
         #Obtenemos el posicionamiento de la home
         primer_elemento = df_internal.iloc[0]['Address']
         home=obtener_home(primer_elemento)
-        df_home=pd.DataFrame(columns=['URL','Total keywords','Top 3','Top 10',"Top 20",'4-10','11-20','21-50','>50'])
+        #df_home=pd.DataFrame(columns=['URL','Total keywords','Top 3','Top 10',"Top 20",'4-10','11-20','21-50','>50'])
         df_home_tmp=df_keywords[df_keywords['URL']==home]
         total= len(df_home_tmp.index)
         top_3=cuenta_keywords_en_rango(df_home_tmp,1,3,'Position')
@@ -130,8 +131,8 @@ if f_internal is not None:
         r_11_20=cuenta_keywords_en_rango(df_home_tmp,11,20,'Position')
         r_21_50=cuenta_keywords_en_rango(df_home_tmp,21,50,'Position')
         r_51_110=cuenta_keywords_en_rango(df_home_tmp,51,110,'Position')
-        dict_home={'URL':home,'Total keywords':total,'Top 3':top_3,'Top 10':top_10,"Top 20":top_20,'4-10':r_4_10,'11-20':r_11_20,'21-50':r_21_50,'>50':r_51_110}
-        df_home=df_home.append(dict_home,ignore_index=True)
+        dict_home={'URL':[home],'Total keywords':[total],'Top 3':[top_3],'Top 10':[top_10],"Top 20":[top_20],'4-10':[r_4_10],'11-20':[r_11_20],'21-50':[r_21_50],'>50':[r_51_110]}
+        df_home=pd.DataFrame(dict_home)
         grid_table_home=pintaTabla(df_home, True, True)
         sel_rows=grid_table_home['selected_rows']
 

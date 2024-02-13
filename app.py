@@ -11,7 +11,7 @@ NO_INDEXABLE='Non-Indexable'
 
 def pintaTabla(df_pinta, grid_update, selection):
     gb=GridOptionsBuilder.from_dataframe(df_pinta)
-    gb.configure_pagination()
+    gb.configure_pagination( paginationAutoPageSize=False,paginationPageSize=20)
     gb.configure_side_bar()  
     if selection:
         gb.configure_selection(selection_mode='multiple',use_checkbox=True)
@@ -36,6 +36,7 @@ def getPathUrl(url, nivel):
     return ruta
 
 #Devuelve un DataFrame con los directorioa hasta el nivel definido.
+@st.cache_data
 def getDirectorios(df_in, nivel_dir,nombre_campo_url):
     i=1
     while i <= nivel_dir:
@@ -44,6 +45,7 @@ def getDirectorios(df_in, nivel_dir,nombre_campo_url):
     return df_in
 
 # Función para obtener la página principal (home) de una URL
+@st.cache_data
 def obtener_home(url):
     parsed_url = urlparse(url)
     return parsed_url.scheme + "://" + parsed_url.netloc+"/"
@@ -55,6 +57,7 @@ def cuenta_keywords_en_rango(df_in, pos_ini, pos_fin, campo_posicion):
     return cuenta      
 
 #Filtra las URL en formato html o pdf validas en función de si son indexables, parcialmente indexables o todas
+@st.cache_data
 def filtraURLvalidas(df_in,tipo,formato_url):
     if formato_url=="Sólo HTML":
         content_type='html'
@@ -72,6 +75,7 @@ def filtraURLvalidas(df_in,tipo,formato_url):
     return df_out     
 
 #Filtra URL no indexables
+@st.cache_data
 def filtraURLNoIndexables(df_in):
     #Los no response realmente no sabemo si son indexables o no
     df_mask=(df_in['Indexability']==NO_INDEXABLE)&(df_in['Indexability Status']!="No Response")

@@ -110,8 +110,12 @@ if f_internal is not None:
         elif fuente=='Ahrefs':
             #Obtenemos el dataframe de los datos de Ahrefs
             columnas_keywords=["Keyword","Current position","Current URL"]
-            tipo_col_keywords={"Keyword": "string", "Current position":int,"Current URL":"string"}
+            #Current position lo ponemos como String porque puede tener valores vacíos
+            tipo_col_keywords={"Keyword": "string", "Current position":"string","Current URL":"string"}
             df_keywords=pd.read_csv(f_keywords,usecols=columnas_keywords, dtype=tipo_col_keywords)
+            #Eliminamos los valores vacíos de current position
+            df_keywords = df_keywords[df_keywords['Current position'] != '']
+            df_keywords['Current position'] = df_keywords['Current position'].astype(int)
             #renombramos para homogenizar nombres de columnas en todas las herramientas
             df_keywords=df_keywords.rename(columns={"Current position": 'Position', 'Current URL':'URL'})
         

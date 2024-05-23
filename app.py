@@ -143,8 +143,7 @@ if f_internal is not None:
         df_home=pd.DataFrame(dict_home)
         grid_table_home=pintaTabla(df_home, True, True)
         sel_rows=grid_table_home['selected_rows']
-        st.write(sel_rows)
-        st.write(len(sel_rows))
+     
         if sel_rows!=None and len(sel_rows) > 0:
             #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
             filtro=[]

@@ -143,16 +143,17 @@ if f_internal is not None:
         df_home=pd.DataFrame(dict_home)
         grid_table_home=pintaTabla(df_home, True, True)
         sel_rows=grid_table_home['selected_rows']
-     
-        if sel_rows!=None and len(sel_rows) > 0:
-            #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
-            filtro=[]
-            for i in sel_rows:
-                n_url=i['URL']
-                filtro.append(n_url)
-            boolean_series = df_keywords['URL'].isin(filtro) 
-            df_url_seleccionadas=df_keywords[boolean_series]
-            grid_table_keywrods=pintaTabla(df_url_seleccionadas,False, False)
+        st.write(type(sel_rows))
+        if sel_rows!=None:
+            if len(sel_rows) > 0:
+                #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
+                filtro=[]
+                for i in sel_rows:
+                    n_url=i['URL']
+                    filtro.append(n_url)
+                boolean_series = df_keywords['URL'].isin(filtro) 
+                df_url_seleccionadas=df_keywords[boolean_series]
+                grid_table_keywrods=pintaTabla(df_url_seleccionadas,False, False)
 
         st.header('Posicionamiento por directorios')
 

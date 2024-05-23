@@ -4,8 +4,8 @@ from urllib.parse import unquote, urlparse
 from pathlib import PurePosixPath
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
-
-
+import logging
+logging.basicConfig(filename='test.log')
 CANONICALISED='Canonicalised'
 NO_INDEXABLE='Non-Indexable'
 
@@ -94,7 +94,7 @@ f_internal=st.file_uploader('CSV con datos exportados de Screaming Frog (interna
 if f_internal is not None:
     fuente = st.selectbox(
     'Selecciona la fuente de palabras clave posicionadas',
-    ('Sistrix', 'Ahrefs'))
+    ('Ahrefs', 'Sistrix'))
     texto='CSV con datos exportados de '+fuente
     f_keywords=st.file_uploader(texto, type='csv')
     if f_keywords is not None:
@@ -145,7 +145,7 @@ if f_internal is not None:
         sel_rows=grid_table_home['selected_rows']
         st.write(sel_rows)
         st.write(len(sel_rows))
-        if len(sel_rows) > 0:
+        if sel_rows!=None and len(sel_rows) > 0:
             #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
             filtro=[]
             for i in sel_rows:

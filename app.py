@@ -17,6 +17,7 @@ def pintaTabla(df_pinta, grid_update, selection):
         gb.configure_selection(selection_mode='multiple',use_checkbox=True)
     gb.configure_default_column(groupable=True, enableRowGroup=True, aggFunc="count")
     grid_options=gb.build()
+    grid_table=None
     if grid_update:
         grid_table=AgGrid(df_pinta,gridOptions=grid_options,update_mode=GridUpdateMode.SELECTION_CHANGED,enable_enterprise_modules=True, editable=True)  
     else:

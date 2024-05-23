@@ -147,6 +147,7 @@ if f_internal is not None:
         st.write("Tipo: "+str(type(sel_rows)))
         if sel_rows is not None:
             if len(sel_rows) > 0:
+                st.write(sel_rows)
                 #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
                 filtro=[]
                 for i in sel_rows:

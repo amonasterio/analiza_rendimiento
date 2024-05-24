@@ -208,16 +208,17 @@ if f_internal is not None:
             df_dir.loc[i,'>50']=cuenta_keywords_en_rango(df_keywords_temporal,51,110,'Position')
         grid_table_resumen=pintaTabla(df_dir, True, True)
         sel_rows=grid_table_resumen['selected_rows']
-
-        if len(sel_rows) > 0:
-            #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
-            filtro=[]
-            for i in sel_rows:
-                directorio=i[n_dir]
-                filtro.append(directorio)
-            boolean_series = df_keywords[n_dir].isin(filtro) 
-            df_dir_seleccionados=df_keywords[boolean_series]
-            grid_table_keywords=pintaTabla(df_dir_seleccionados,False, False)
+        if sel_rows is not None:
+            if len(sel_rows) > 0:
+                st.write(sel_rows)
+                #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
+                filtro=[]
+                for i in sel_rows:
+                    directorio=i[n_dir]
+                    filtro.append(directorio)
+                boolean_series = df_keywords[n_dir].isin(filtro) 
+                df_dir_seleccionados=df_keywords[boolean_series]
+                grid_table_keywords=pintaTabla(df_dir_seleccionados,False, False)
         
         st.header('URL no indexables posicionadas')
         df_no_indexable=filtraURLNoIndexables(df_internal)

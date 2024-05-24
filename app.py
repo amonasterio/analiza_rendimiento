@@ -150,7 +150,7 @@ if f_internal is not None:
                 st.write(sel_rows)
                 #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
                 filtro=[]
-                for index, row in sel_rows.iterrows():
+                for row in sel_rows.iterrows():
                     n_url = row['URL']
                     filtro.append(n_url)
                 #for x in sel_rows:

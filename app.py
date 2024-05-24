@@ -213,7 +213,7 @@ if f_internal is not None:
             if len(sel_rows) > 0:
                 #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
                 filtro=[]
-                for row in sel_rows.iterrows():
+                for index,row in sel_rows.iterrows():
                     directorio=row[n_dir]
                     filtro.append(directorio)
                 boolean_series = df_keywords[n_dir].isin(filtro) 

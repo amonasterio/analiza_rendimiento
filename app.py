@@ -216,8 +216,8 @@ if f_internal is not None:
                 st.write(sel_rows)
                 #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
                 filtro=[]
-                for i in sel_rows:
-                    directorio=i[n_dir]
+                for row in sel_rows.iterrows():
+                    directorio=row[n_dir]
                     filtro.append(directorio)
                 boolean_series = df_keywords[n_dir].isin(filtro) 
                 df_dir_seleccionados=df_keywords[boolean_series]

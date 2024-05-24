@@ -148,7 +148,7 @@ if f_internal is not None:
             if len(sel_rows) > 0:
                 #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
                 filtro=[]
-                for row in sel_rows.iterrows():
+                for index,row in sel_rows.iterrows():
                     n_url = row['URL']
                     filtro.append(n_url)
                 #for x in sel_rows:

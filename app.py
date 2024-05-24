@@ -150,14 +150,8 @@ if f_internal is not None:
                 st.write(sel_rows)
                 #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
                 filtro=[]
-                for i in sel_rows:
-                    try:
-                        n_url=i['URL']
-                    except Exception as e:
-                        logging.error(e)
-                        st.error("Se ha producido un error en la aplicación. Por favor, revisa los registros para más detalles.")
-                        # Opcional: registrar el error completo en los logs
-                        st.write(e) 
+                for x in sel_rows:
+                    n_url=x['URL']
                     filtro.append(n_url)
                 boolean_series = df_keywords['URL'].isin(filtro) 
                 df_url_seleccionadas=df_keywords[boolean_series]

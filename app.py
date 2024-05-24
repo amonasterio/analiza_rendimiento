@@ -144,10 +144,8 @@ if f_internal is not None:
         df_home=pd.DataFrame(dict_home)
         grid_table_home=pintaTabla(df_home, True, True)
         sel_rows=grid_table_home['selected_rows']
-        st.write("Tipo: "+str(type(sel_rows)))
         if sel_rows is not None:
             if len(sel_rows) > 0:
-                st.write(sel_rows)
                 #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
                 filtro=[]
                 for row in sel_rows.iterrows():
@@ -213,7 +211,6 @@ if f_internal is not None:
         sel_rows=grid_table_resumen['selected_rows']
         if sel_rows is not None:
             if len(sel_rows) > 0:
-                st.write(sel_rows)
                 #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
                 filtro=[]
                 for row in sel_rows.iterrows():

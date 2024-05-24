@@ -214,8 +214,8 @@ if f_internal is not None:
                 #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
                 filtro=[]
                 for index,row in sel_rows.iterrows():
-                    directorio=row.n_dir
-                    filtro.append(directorio)
+                    #directorio=row[n_dir]
+                    filtro.append(row[n_dir])
                 boolean_series = df_keywords[n_dir].isin(filtro) 
                 df_dir_seleccionados=df_keywords[boolean_series]
                 grid_table_keywords=pintaTabla(df_dir_seleccionados,False, False)

@@ -150,9 +150,12 @@ if f_internal is not None:
                 st.write(sel_rows)
                 #Filtramos la URL seleccionada para obtener las palabras clave para las que posiciona
                 filtro=[]
-                for x in sel_rows:
-                    n_url=x['URL']
+                for index, row in sel_rows.iterrows():
+                    n_url = row['URL']
                     filtro.append(n_url)
+                #for x in sel_rows:
+                #    n_url=x['URL']
+                #    filtro.append(n_url)
                 boolean_series = df_keywords['URL'].isin(filtro) 
                 df_url_seleccionadas=df_keywords[boolean_series]
                 grid_table_keywrods=pintaTabla(df_url_seleccionadas,False, False)

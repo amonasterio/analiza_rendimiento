@@ -214,7 +214,7 @@ if f_internal is not None:
                 #Filtramos los directorios seleccionados para obtener las palabras clave para las que posiciona
                 filtro=[]
                 for index,row in sel_rows.iterrows():
-                    #directorio=row[n_dir]
+                    directorio=row[n_dir]
                     filtro.append(row[n_dir])
                 boolean_series = df_keywords[n_dir].isin(filtro) 
                 df_dir_seleccionados=df_keywords[boolean_series]
@@ -226,12 +226,13 @@ if f_internal is not None:
         df_url_indexadas_no_indexables=df_keywords[df_keywords['URL'].isin(lista_URL_no_indexables)]
         grid_table_indexadas_no_indexables=pintaTabla(df_url_indexadas_no_indexables,True, True)
         sel_rows=grid_table_indexadas_no_indexables['selected_rows']
-        if len(sel_rows) > 0:
-            #Filtramos las URL seleccionadas para obtener los datos relativos a ellas
-            filtro=[]
-            for i in sel_rows:
-                n_url=i["URL"]
-                filtro.append(n_url)
-            boolean_series = df_no_indexable["Address"].isin(filtro) 
-            df_url_seleccionadas=df_no_indexable[boolean_series]
-            grid_table_url_no_indexables=pintaTabla(df_url_seleccionadas,False, False)
+        if sel_rows is not None:
+            if len(sel_rows) > 0:
+                #Filtramos las URL seleccionadas para obtener los datos relativos a ellas
+                filtro=[]
+                for i in sel_rows:
+                    n_url=i["URL"]
+                    filtro.append(n_url)
+                boolean_series = df_no_indexable["Address"].isin(filtro) 
+                df_url_seleccionadas=df_no_indexable[boolean_series]
+                grid_table_url_no_indexables=pintaTabla(df_url_seleccionadas,False, False)
